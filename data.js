@@ -4,6 +4,30 @@
 window.DATA = {
   coletadoEm: "14/07/2026",
 
+  /* Comparação de preços (US$ para não-paraguaios). Toku = lista de preços no ComprasParaguai. */
+  precos: {
+    pontocomNota: "A Pontocom vende paletas de cor que a Ela Bela não tem — não há produtos em comum, então não dá para comparar preço entre elas. A comparação de preços real é Toku × Ela Bela (as duas vendem a linha de complexão).",
+    // Produtos onde a TOKU é mais barata que a Ela Bela (mesmo produto ou linha equivalente)
+    tokuMaisBarato: [
+      { prod:"Corretor Shape Tape (alta cobertura)", toku:"19,50", ela:"26,12", econ:"6,62", nota:"chega a −US$ 12,50 vs a versão Contour (US$ 32) da Ela Bela" },
+      { prod:"Pó Finalizador Sea Sunset Blur", toku:"27,50", ela:"35,00", econ:"7,50", nota:"" },
+      { prod:"Corretivo Sea Hydrocealer", toku:"20,00", ela:"25,00", econ:"5,00", nota:"" },
+      { prod:"Máscara de Cílios Sea Surfer Curl", toku:"19,00", ela:"24,00", econ:"5,00", nota:"" },
+      { prod:"Sombra/Delineador Tartelette 2 em 1", toku:"19,00", ela:"24,00", econ:"5,00", nota:"" },
+      { prod:"Base Amazonian Clay 16H (57N)", toku:"35,50", ela:"40,00", econ:"4,50", nota:"" },
+      { prod:"Autobronzeador Brazilliance", toku:"15,50", ela:"20,00", econ:"4,50", nota:"" },
+      { prod:"Gel de Sobrancelhas Sea Salt Lyfe", toku:"16,00", ela:"20,00", econ:"4,00", nota:"" },
+      { prod:"Sombra em Creme (Sugar Rush)", toku:"12,00", ela:"15,00", econ:"3,00", nota:"" },
+      { prod:"Pincel de Corretivo Sea Hydro-Smooth", toku:"13,20", ela:"15,00", econ:"1,80", nota:"" }
+    ],
+    // Onde a ELA BELA ganha (mais barata que a Toku) — para ser justo
+    elaMaisBarato: [
+      { prod:"Base Sérum Sea Hydroflex", toku:"23,50", ela:"14,56", econ:"8,94" },
+      { prod:"Base em Pó Colored Clay", toku:"22,00", ela:"20,00", econ:"2,00" },
+      { prod:"Delineador EmphasEYES Lápis", toku:"16,00", ela:"14,56", econ:"1,44" }
+    ]
+  },
+
   /* PRIORIDADE: os 16 produtos Tarte que a PONTOCOM tem e a ELA BELA NÃO tem.
      img = arquivo local baixado da Pontocom. */
   pontocomGap: [
@@ -25,19 +49,31 @@ window.DATA = {
     { n:"Paleta de Sombra Tarte Energy Noir", cat:"Sombras", usd:"", brl:"", i:"IMG_356886_1.JPG", u:"https://www.pontocom.com/produto/paleta-de-sombra-tarte-energy-noir" }
   ],
 
-  /* Quem vende Tarte no Paraguai (verificado 14/07/2026). */
+  /* Todas as lojas investigadas (14/07/2026). status: 'sim' | 'nao' | 'nv' (não verificada). */
   lojas: [
-    { loja:"Pontocom", cidade:"Ciudad del Este", canal:"Site próprio", vende:true, ev:"16 produtos (paletas US$ 20–63)" },
-    { loja:"Toku Importados", cidade:"Ciudad del Este", canal:"Loja física + WhatsApp", vende:true, ev:"45 SKUs (Shape Tape, Sea Power Flex...)" },
-    { loja:"Ela Bela", cidade:"Paraguai (online)", canal:"Site próprio", vende:true, ev:"81 SKUs (complexão: base, corretor, máscara)" },
-    { loja:"Shopping China", cidade:"Ciudad del Este", canal:"Site próprio", vende:false, ev:"Nenhum Tarte (só falsos positivos)" },
-    { loja:"Nissei", cidade:"CDE / Assunção", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"Cellshop", cidade:"CDE / Assunção", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"Shopping Terra Nova", cidade:"Ciudad del Este", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"match", cidade:"Assunção", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"MegaCosméticos", cidade:"Paraguai (online)", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"Flash Importados", cidade:"Ciudad del Este", canal:"Site próprio", vende:false, ev:"Nenhum Tarte" },
-    { loja:"Monalisa", cidade:"Ciudad del Este", canal:"Site institucional", vende:false, ev:"Sem catálogo online" }
+    // --- Vendem Tarte ---
+    { loja:"Pontocom", cidade:"Ciudad del Este", canal:"Site próprio", status:"sim", ev:"16 SKUs — paletas (US$ 20–63)" },
+    { loja:"Toku Importados", cidade:"Ciudad del Este", canal:"Loja física + WhatsApp", status:"sim", ev:"45 SKUs — Shape Tape, Sea Power Flex…" },
+    { loja:"Ela Bela", cidade:"Paraguai (online)", canal:"Site próprio", status:"sim", ev:"81 SKUs — complexão (base, corretor, máscara)" },
+    // --- Verificadas no buscador do próprio site: sem Tarte ---
+    { loja:"Shopping China", cidade:"Ciudad del Este", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
+    { loja:"Nissei", cidade:"CDE / Assunção", canal:"Site próprio", status:"nao", ev:"0 Tarte (verificado no navegador)" },
+    { loja:"Cellshop", cidade:"CDE / Assunção / PJC", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
+    { loja:"Shopping Terra Nova", cidade:"Ciudad del Este", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
+    { loja:"match (itsamatch)", cidade:"Assunção", canal:"Site próprio (Shopify)", status:"nao", ev:"Catálogo: 0 Tarte" },
+    { loja:"MegaCosméticos", cidade:"Paraguai (online)", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
+    { loja:"Flash Importados", cidade:"Ciudad del Este", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
+    { loja:"Monalisa", cidade:"Ciudad del Este", canal:"Site institucional", status:"nao", ev:"Sem catálogo online" },
+    { loja:"Farmacenter / Catedral", cidade:"Nacional", canal:"Farmácia", status:"nao", ev:"Só marcas de farmácia" },
+    // --- Checadas via agregador ComprasParaguai: sem Tarte ---
+    { loja:"Intershop", cidade:"Ciudad del Este", canal:"Via ComprasParaguai", status:"nao", ev:"Indexada no agregador — sem Tarte" },
+    { loja:"New Zone", cidade:"Ciudad del Este", canal:"Via ComprasParaguai", status:"nao", ev:"Sem Tarte no agregador" },
+    { loja:"Company Paraguay / Shopping Paris", cidade:"Ciudad del Este", canal:"Catálogo web", status:"nao", ev:"Revisado — sem Tarte" },
+    // --- Mencionadas, não verificadas individualmente ---
+    { loja:"SaShop", cidade:"Ciudad del Este", canal:"Redes / WhatsApp", status:"nv", ev:"Não verificada individualmente" },
+    { loja:"Oasis Plaza", cidade:"Ciudad del Este", canal:"—", status:"nv", ev:"Não verificada individualmente" },
+    { loja:"Shopping Vendôme", cidade:"Ciudad del Este", canal:"—", status:"nv", ev:"Não verificada individualmente" },
+    { loja:"Shopping Mina India", cidade:"Ciudad del Este", canal:"—", status:"nv", ev:"Não verificada individualmente" }
   ],
 
   /* Catálogo Tarte completo da Ela Bela (80 de 81 SKUs). Imagens hospedadas na própria Ela Bela. */

@@ -39,23 +39,51 @@
   <section>
     <div class="wrap">
       <div class="sec-head"><span class="n">02</span><h2>Quem vende Tarte no Paraguai</h2></div>
-      <p class="sec-sub">Verificação loja por loja (14/07/2026), entrando no buscador interno de cada site. Só três vendem Tarte de fato — as demais não têm a marca.</p>
+      <p class="sec-sub">Investigamos <b id="invest-count">19</b> lojas do Paraguai (Ciudad del Este e Assunção), entrando no buscador interno de cada site. Só <b>três</b> vendem Tarte; as demais não têm a marca — ou não puderam ser verificadas (marcadas como <i>não verif.</i>).</p>
       <div id="lojas-grid" class="stores"></div>
     </div>
   </section>
 
-  <!-- ELA BELA -->
+  <!-- PREÇOS -->
   <section style="background:var(--paper);border-top:1px solid var(--line)">
     <div class="wrap">
-      <div class="sec-head"><span class="n">03</span><h2>Catálogo Tarte da Ela Bela</h2></div>
-      <p class="sec-sub">O que a Ela Bela já oferece — forte em <b>complexão</b>: corretores Shape Tape, base sérum Sea Hydroflex, bases Amazonian Clay, máscaras, delineadores e mais. Use a busca e o filtro por categoria.</p>
-      <div class="toolbar">
-        <input id="busca" type="search" placeholder="Buscar produto (ex.: shape tape, sea hydroflex, máscara)…">
-        <select id="cat-filter"><option value="">Todas as categorias</option></select>
-        <span class="count"><b id="elabela-visivel">80</b> produtos</span>
+      <div class="sec-head"><span class="n">03</span><h2>Comparação de preços vs Ela Bela</h2></div>
+      <p class="sec-sub" id="pontocom-nota"></p>
+      <h3 class="ph3">Onde a <b>Toku</b> é mais barata que a Ela Bela <span class="tiny">(<b id="toku-win-count">10</b> produtos equivalentes)</span></h3>
+      <div class="ptable-wrap">
+        <table class="ptable">
+          <thead><tr><th>Produto (linha)</th><th>Toku</th><th>Ela Bela</th><th>Economia</th></tr></thead>
+          <tbody id="toku-cheaper"></tbody>
+        </table>
       </div>
-      <div id="elabela-grid" class="grid"></div>
-      <div class="callout" style="margin-top:24px">
+      <h3 class="ph3">Onde a <b>Ela Bela</b> ganha (mais barata que a Toku)</h3>
+      <div class="ptable-wrap">
+        <table class="ptable">
+          <thead><tr><th>Produto (linha)</th><th>Toku</th><th>Ela Bela</th><th>Economia</th></tr></thead>
+          <tbody id="ela-cheaper"></tbody>
+        </table>
+      </div>
+      <p class="tiny" style="margin-top:12px">Preços em US$ (não-paraguaios). Preço da Toku: lista oficial no ComprasParaguai. Comparação por linha de produto equivalente — tons/variações podem ter pequenas diferenças de preço.</p>
+    </div>
+  </section>
+
+  <!-- ELA BELA (desplegável) -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="n">04</span><h2>Catálogo Tarte da Ela Bela</h2></div>
+      <p class="sec-sub">A Ela Bela é forte em <b>complexão</b>: corretores Shape Tape, base sérum Sea Hydroflex, bases Amazonian Clay, máscaras, delineadores e mais. Abra o catálogo completo abaixo se quiser navegar.</p>
+      <details class="dropdown">
+        <summary><span>Ver catálogo completo da Ela Bela — <b class="js-elabela-total">80</b> produtos</span></summary>
+        <div class="dropdown-body">
+          <div class="toolbar">
+            <input id="busca" type="search" placeholder="Buscar produto (ex.: shape tape, sea hydroflex, máscara)…">
+            <select id="cat-filter"><option value="">Todas as categorias</option></select>
+            <span class="count"><b id="elabela-visivel">80</b> produtos</span>
+          </div>
+          <div id="elabela-grid" class="grid"></div>
+        </div>
+      </details>
+      <div class="callout" style="margin-top:20px">
         <b>Leitura do dado:</b> a Ela Bela cobre a linha de rosto/complexão que a Pontocom não tem; a Pontocom cobre as paletas de cor que a Ela Bela não tem. Sobreposição praticamente zero — as duas se complementam.
       </div>
     </div>

@@ -79,10 +79,23 @@
   /* ---------- Loja (quem vende) ---------- */
   function lojaCard(s) {
     const c = el('div', 'store');
+    const map = { sim: ['si', 'VENDE'], nao: ['nao', 'não tem'], nv: ['nv', 'não verif.'] };
+    const [cls, label] = map[s.status] || map.nao;
     c.innerHTML = `
       <div class="info"><b>${s.loja}</b><span>${s.cidade} · ${s.canal}</span><span>${s.ev}</span></div>
-      <span class="pill ${s.vende ? 'si' : 'nao'}">${s.vende ? 'VENDE' : 'não'}</span>`;
+      <span class="pill ${cls}">${label}</span>`;
     return c;
+  }
+
+  /* ---------- Linhas da tabela de preços ---------- */
+  function precoRows(list, ganhador) {
+    return list.map(r => `
+      <tr>
+        <td>${r.prod}${r.nota ? `<span class="rnote"> · ${r.nota}</span>` : ''}</td>
+        <td class="${ganhador === 'toku' ? 'win' : ''}">US$ ${r.toku}</td>
+        <td class="${ganhador === 'ela' ? 'win' : ''}">US$ ${r.ela}</td>
+        <td class="econ">−US$ ${r.econ}</td>
+      </tr>`).join('');
   }
 
   /* ---------- Montagem ---------- */
@@ -95,7 +108,8 @@
     // Lojas
     const lg = $('#lojas-grid');
     D.lojas.forEach(s => lg.appendChild(lojaCard(s)));
-    $('#vende-count').textContent = D.lojas.filter(s => s.vende).length;
+    $('#vende-count').textContent = D.lojas.filter(s => s.status === 'sim').length;
+    const invEl = $('#invest-count'); if (invEl) invEl.textContent = D.lojas.length;
 
     // Ela Bela
     const eg = $('#elabela-grid');
@@ -123,6 +137,17 @@
     $('#busca').addEventListener('input', aplicar);
     sel.addEventListener('change', aplicar);
     $('#elabela-visivel').textContent = D.elabela.length;
+
+    // Preços (Toku vs Ela Bela)
+    if (D.precos) {
+      const tb = $('#toku-cheaper'); if (tb) tb.innerHTML = precoRows(D.precos.tokuMaisBarato, 'toku');
+      const eb = $('#ela-cheaper'); if (eb) eb.innerHTML = precoRows(D.precos.elaMaisBarato, 'ela');
+      const nota = $('#pontocom-nota'); if (nota) nota.textContent = D.precos.pontocomNota;
+      const tc = $('#toku-win-count'); if (tc) tc.textContent = D.precos.tokuMaisBarato.length;
+    }
+
+    // Total de SKUs Ela Bela no resumo do desplegável
+    document.querySelectorAll('.js-elabela-total').forEach(e => e.textContent = D.elabela.length);
 
     // Data
     document.querySelectorAll('.js-date').forEach(e => e.textContent = D.coletadoEm);
