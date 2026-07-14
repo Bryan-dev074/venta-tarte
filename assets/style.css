@@ -97,6 +97,8 @@ footer .muted{opacity:.75;line-height:1.7}
 .ptable tbody tr:last-child td{border-bottom:none}
 .ptable tbody tr:nth-child(even){background:var(--soft)}
 .ptable td.win{font-weight:700;color:var(--ok);background:var(--ok-l)}
+.ptable td.na{color:#c3c7cd;text-align:center}
+.ptable td.mincell{font-weight:700;color:var(--wine);white-space:nowrap}
 .ptable td.econ{font-weight:700;color:var(--wine);white-space:nowrap}
 .rnote{color:var(--muted);font-size:11px;font-style:italic}
 

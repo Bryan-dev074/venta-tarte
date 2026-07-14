@@ -87,15 +87,20 @@
     return c;
   }
 
-  /* ---------- Linhas da tabela de preços ---------- */
-  function precoRows(list, ganhador) {
-    return list.map(r => `
-      <tr>
-        <td>${r.prod}${r.nota ? `<span class="rnote"> · ${r.nota}</span>` : ''}</td>
-        <td class="${ganhador === 'toku' ? 'win' : ''}">US$ ${r.toku}</td>
-        <td class="${ganhador === 'ela' ? 'win' : ''}">US$ ${r.ela}</td>
-        <td class="econ">−US$ ${r.econ}</td>
-      </tr>`).join('');
+  /* ---------- Tabela de preços a 3 (Toku / New Zone / Ela Bela) ---------- */
+  const LOJA_NOME = { toku: 'Toku', nz: 'New Zone', ela: 'Ela Bela' };
+  function precoCell(v, who, min) {
+    if (v === '—') return `<td class="na">—</td>`;
+    return `<td class="${min === who ? 'win' : ''}">US$ ${v}</td>`;
+  }
+  function precoRow3(r) {
+    return `<tr>
+      <td>${r.prod}${r.nota ? `<span class="rnote"> · ${r.nota}</span>` : ''}</td>
+      ${precoCell(r.toku, 'toku', r.min)}
+      ${precoCell(r.nz, 'nz', r.min)}
+      ${precoCell(r.ela, 'ela', r.min)}
+      <td class="mincell">${LOJA_NOME[r.min]}</td>
+    </tr>`;
   }
 
   /* ---------- Montagem ---------- */
@@ -138,12 +143,13 @@
     sel.addEventListener('change', aplicar);
     $('#elabela-visivel').textContent = D.elabela.length;
 
-    // Preços (Toku vs Ela Bela)
+    // Preços (comparação a 3)
     if (D.precos) {
-      const tb = $('#toku-cheaper'); if (tb) tb.innerHTML = precoRows(D.precos.tokuMaisBarato, 'toku');
-      const eb = $('#ela-cheaper'); if (eb) eb.innerHTML = precoRows(D.precos.elaMaisBarato, 'ela');
+      const pb = $('#precos-body'); if (pb) pb.innerHTML = D.precos.linhas.map(precoRow3).join('');
       const nota = $('#pontocom-nota'); if (nota) nota.textContent = D.precos.pontocomNota;
-      const tc = $('#toku-win-count'); if (tc) tc.textContent = D.precos.tokuMaisBarato.length;
+      const tw = $('#toku-win-count'); if (tw) tw.textContent = D.precos.linhas.filter(l => l.min === 'toku').length;
+      const ew = $('#ela-win-count'); if (ew) ew.textContent = D.precos.linhas.filter(l => l.min === 'ela').length;
+      const nw = $('#nz-count'); if (nw) nw.textContent = D.precos.linhas.filter(l => l.nz !== '—').length;
     }
 
     // Total de SKUs Ela Bela no resumo do desplegável

@@ -4,27 +4,25 @@
 window.DATA = {
   coletadoEm: "14/07/2026",
 
-  /* Comparação de preços (US$ para não-paraguaios). Toku = lista de preços no ComprasParaguai. */
+  /* Comparação de preços a 3 (US$ para não-paraguaios). "—" = a loja não vende essa linha.
+     min = loja com menor preço na linha. Toku/New Zone: listas dos próprios sites/agregador. */
   precos: {
-    pontocomNota: "A Pontocom vende paletas de cor que a Ela Bela não tem — não há produtos em comum, então não dá para comparar preço entre elas. A comparação de preços real é Toku × Ela Bela (as duas vendem a linha de complexão).",
-    // Produtos onde a TOKU é mais barata que a Ela Bela (mesmo produto ou linha equivalente)
-    tokuMaisBarato: [
-      { prod:"Corretor Shape Tape (alta cobertura)", toku:"19,50", ela:"26,12", econ:"6,62", nota:"chega a −US$ 12,50 vs a versão Contour (US$ 32) da Ela Bela" },
-      { prod:"Pó Finalizador Sea Sunset Blur", toku:"27,50", ela:"35,00", econ:"7,50", nota:"" },
-      { prod:"Corretivo Sea Hydrocealer", toku:"20,00", ela:"25,00", econ:"5,00", nota:"" },
-      { prod:"Máscara de Cílios Sea Surfer Curl", toku:"19,00", ela:"24,00", econ:"5,00", nota:"" },
-      { prod:"Sombra/Delineador Tartelette 2 em 1", toku:"19,00", ela:"24,00", econ:"5,00", nota:"" },
-      { prod:"Base Amazonian Clay 16H (57N)", toku:"35,50", ela:"40,00", econ:"4,50", nota:"" },
-      { prod:"Autobronzeador Brazilliance", toku:"15,50", ela:"20,00", econ:"4,50", nota:"" },
-      { prod:"Gel de Sobrancelhas Sea Salt Lyfe", toku:"16,00", ela:"20,00", econ:"4,00", nota:"" },
-      { prod:"Sombra em Creme (Sugar Rush)", toku:"12,00", ela:"15,00", econ:"3,00", nota:"" },
-      { prod:"Pincel de Corretivo Sea Hydro-Smooth", toku:"13,20", ela:"15,00", econ:"1,80", nota:"" }
-    ],
-    // Onde a ELA BELA ganha (mais barata que a Toku) — para ser justo
-    elaMaisBarato: [
-      { prod:"Base Sérum Sea Hydroflex", toku:"23,50", ela:"14,56", econ:"8,94" },
-      { prod:"Base em Pó Colored Clay", toku:"22,00", ela:"20,00", econ:"2,00" },
-      { prod:"Delineador EmphasEYES Lápis", toku:"16,00", ela:"14,56", econ:"1,44" }
+    pontocomNota: "A Pontocom vende paletas de cor que a Ela Bela não tem — sem produtos em comum, não dá para comparar preço com ela. Quem disputa preço com a Ela Bela na linha de complexão é a Toku e a New Zone.",
+    linhas: [
+      { prod:"Corretor Shape Tape (alta cobertura)", toku:"19,50", nz:"—", ela:"26,12", min:"toku" },
+      { prod:"Corretor Sea Hydrocealer", toku:"20,00", nz:"22,00", ela:"25,00", min:"toku" },
+      { prod:"Base Sérum Sea Hydroflex", toku:"23,50", nz:"27,00", ela:"14,56", min:"ela" },
+      { prod:"Sea Power Flex (corretor/sérum)", toku:"30,00", nz:"35,00", ela:"—", min:"toku" },
+      { prod:"Pó Finalizador Sea Sunset Blur", toku:"27,50", nz:"—", ela:"35,00", min:"toku" },
+      { prod:"Tartelette (sombra/delineador)", toku:"19,00", nz:"21,00", ela:"24,00", min:"toku" },
+      { prod:"Delineador EmphasEYES (alta def.)", toku:"16,00", nz:"18,00", ela:"20,00", min:"toku", nota:"Ela Bela também tem a versão lápis a US$ 14,56" },
+      { prod:"Máscara de Cílios Sea Surfer Curl", toku:"19,00", nz:"—", ela:"24,00", min:"toku" },
+      { prod:"Máscara Sugar Rush Lash", toku:"12,00", nz:"14,00", ela:"15,00", min:"toku" },
+      { prod:"Autobronzeador Brazilliance", toku:"15,50", nz:"18,00", ela:"20,00", min:"toku" },
+      { prod:"Base Amazonian Clay 16H (57N)", toku:"35,50", nz:"—", ela:"40,00", min:"toku" },
+      { prod:"Gel de Sobrancelhas Sea Salt Lyfe", toku:"16,00", nz:"—", ela:"20,00", min:"toku" },
+      { prod:"Base em Pó Colored Clay", toku:"22,00", nz:"—", ela:"20,00", min:"ela" },
+      { prod:"Pincel de Corretivo Sea Hydro-Smooth", toku:"13,20", nz:"—", ela:"15,00", min:"toku" }
     ]
   },
 
@@ -55,6 +53,7 @@ window.DATA = {
     { loja:"Pontocom", cidade:"Ciudad del Este", canal:"Site próprio", status:"sim", ev:"16 SKUs — paletas (US$ 20–63)" },
     { loja:"Toku Importados", cidade:"Ciudad del Este", canal:"Loja física + WhatsApp", status:"sim", ev:"45 SKUs — Shape Tape, Sea Power Flex…" },
     { loja:"Ela Bela", cidade:"Paraguai (online)", canal:"Site próprio", status:"sim", ev:"81 SKUs — complexão (base, corretor, máscara)" },
+    { loja:"New Zone", cidade:"Ciudad del Este", canal:"Site próprio", status:"sim", ev:"12 SKUs — bases Sea, corretores, delineadores" },
     // --- Verificadas no buscador do próprio site: sem Tarte ---
     { loja:"Shopping China", cidade:"Ciudad del Este", canal:"Site próprio", status:"nao", ev:"Buscador interno: 0 Tarte" },
     { loja:"Nissei", cidade:"CDE / Assunção", canal:"Site próprio", status:"nao", ev:"0 Tarte (verificado no navegador)" },
@@ -67,7 +66,6 @@ window.DATA = {
     { loja:"Farmacenter / Catedral", cidade:"Nacional", canal:"Farmácia", status:"nao", ev:"Só marcas de farmácia" },
     // --- Checadas via agregador ComprasParaguai: sem Tarte ---
     { loja:"Intershop", cidade:"Ciudad del Este", canal:"Via ComprasParaguai", status:"nao", ev:"Indexada no agregador — sem Tarte" },
-    { loja:"New Zone", cidade:"Ciudad del Este", canal:"Via ComprasParaguai", status:"nao", ev:"Sem Tarte no agregador" },
     { loja:"Company Paraguay / Shopping Paris", cidade:"Ciudad del Este", canal:"Catálogo web", status:"nao", ev:"Revisado — sem Tarte" },
     // --- Mencionadas, não verificadas individualmente ---
     { loja:"SaShop", cidade:"Ciudad del Este", canal:"Redes / WhatsApp", status:"nv", ev:"Não verificada individualmente" },
