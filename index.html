@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarte no Paraguai · Pontocom vs Ela Bela</title>
+  <meta name="description" content="Comparação de produtos Tarte Cosmetics: o que a Pontocom (Ciudad del Este) tem e a Ela Bela não tem. Fotos, preços e links.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💄</text></svg>">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="kick">Comparativo de catálogo · Tarte Cosmetics no Paraguai</div>
+      <h1>O que a Pontocom tem de Tarte<br>e a Ela Bela ainda não</h1>
+      <p>Cruzamos o catálogo Tarte completo das duas lojas em <b class="js-date">14/07/2026</b>. Os catálogos são quase complementares: a <b>Pontocom</b> aposta em <b>paletas de cor</b>, e a <b>Ela Bela</b> em <b>complexão</b> (bases, corretores, máscaras). Abaixo, primeiro os <b>16 produtos exclusivos da Pontocom</b> — com foto, preço e link — e depois o resto dos dados.</p>
+      <div class="stats">
+        <div class="stat hl"><b id="pontocom-count">16</b><span>produtos só na Pontocom</span></div>
+        <div class="stat"><b id="elabela-count">80</b><span>SKUs Tarte na Ela Bela</span></div>
+        <div class="stat"><b>0</b><span>produtos em comum</span></div>
+        <div class="stat"><b id="vende-count">3</b><span>lojas que vendem Tarte no PY</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRIORIDADE: PONTOCOM -->
+  <section class="priority">
+    <div class="wrap">
+      <span class="badge-first">Em primeiro lugar</span>
+      <div class="sec-head"><span class="n">01</span><h2>Produtos que a Pontocom tem e a Ela Bela NÃO tem</h2></div>
+      <p class="sec-sub">São 16 referências Tarte (quase todas paletas de sombra, contorno e iluminador, além do bronzer) que hoje <b>não figuram no catálogo da Ela Bela</b>. Clique em cada card para ir direto ao produto na Pontocom.</p>
+      <div id="pontocom-grid" class="grid"></div>
+    </div>
+  </section>
+
+  <!-- QUEM VENDE -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><span class="n">02</span><h2>Quem vende Tarte no Paraguai</h2></div>
+      <p class="sec-sub">Verificação loja por loja (14/07/2026), entrando no buscador interno de cada site. Só três vendem Tarte de fato — as demais não têm a marca.</p>
+      <div id="lojas-grid" class="stores"></div>
+    </div>
+  </section>
+
+  <!-- ELA BELA -->
+  <section style="background:var(--paper);border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head"><span class="n">03</span><h2>Catálogo Tarte da Ela Bela</h2></div>
+      <p class="sec-sub">O que a Ela Bela já oferece — forte em <b>complexão</b>: corretores Shape Tape, base sérum Sea Hydroflex, bases Amazonian Clay, máscaras, delineadores e mais. Use a busca e o filtro por categoria.</p>
+      <div class="toolbar">
+        <input id="busca" type="search" placeholder="Buscar produto (ex.: shape tape, sea hydroflex, máscara)…">
+        <select id="cat-filter"><option value="">Todas as categorias</option></select>
+        <span class="count"><b id="elabela-visivel">80</b> produtos</span>
+      </div>
+      <div id="elabela-grid" class="grid"></div>
+      <div class="callout" style="margin-top:24px">
+        <b>Leitura do dado:</b> a Ela Bela cobre a linha de rosto/complexão que a Pontocom não tem; a Pontocom cobre as paletas de cor que a Ela Bela não tem. Sobreposição praticamente zero — as duas se complementam.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <b>Tarte no Paraguai — Pontocom × Ela Bela</b>
+          <div class="muted">Pesquisa OSINT de varejo · coletado em <span class="js-date">14/07/2026</span><br>
+          Motor: Playwright + Obscura (stealth) + navegador real.</div>
+        </div>
+        <div class="muted" style="max-width:44ch">
+          Fontes: pontocom.com · elabela.com.py · comprasparaguai.com.br<br>
+          Preços em US$ para não-paraguaios (residente paga + IVA). Preços e estoque podem mudar sem aviso.
+        </div>
+      </div>
+      <div class="disc">Dados de catálogo público das lojas, para fins de comparação de mercado. Imagens e marcas pertencem aos seus respectivos donos.</div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
